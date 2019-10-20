@@ -15,7 +15,7 @@ Clone the repository
 
 Prerequisites 
 
-change .env  MYSQL_HOST= docker
+change .env  MYSQL_HOST= docker &  REDIS_HOST= redis
  
 Install **docker** and **docker compose** and then open folder directory excute the below
 
