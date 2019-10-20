@@ -190,7 +190,7 @@ export class SchoolController {
         ? (createTeacher = await insertQuery(Teachers, { email: teacher }))
         : null;
       await bulkStudentInsertQuery(
-        isTeacherExist.length ? isTeacherExist[0] : createTeacher,
+        isTeacherExist.length ? isTeacherExist[0] : createTeacher.generatedMaps[0],
         students,
       );
       response.status(204).send();
