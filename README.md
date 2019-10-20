@@ -14,6 +14,8 @@ This API provides endpoints for teachers to perform administrative functions for
 Clone the repository
 
 Prerequisites 
+
+change .env  MYSQL_HOST= docker
  
 Install **docker** and **docker compose** and then open folder directory excute the below
 
@@ -25,6 +27,8 @@ docker-compose up
 ### Installing manually 
 
 Prerequisites 
+
+change .env  MYSQL_HOST= localhost
 
 **Npm  -v6.9.0**
 
