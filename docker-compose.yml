@@ -1,0 +1,40 @@
+version: '3.0'
+
+services:
+  web1:
+    build: .
+    command: npm run start
+    depends_on:
+      - database
+    ports:
+      - "8085:5000"
+    restart: always
+    links:
+      - database
+      - redis
+    environment:
+      MYSQL_HOST: database
+      MYSQL_USERNAME: schools
+      MYSQL_DATABASE: school
+      MYSQL_PASSWORD: 123456
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      REDIS_KEY: school
+      REDIS_EXPIRY: 60
+
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+
+  database:
+    image: "mysql:5.6"
+    container_name: "mysql"
+    restart: always
+    environment:
+        MYSQL_ROOT_PASSWORD: network
+        MYSQL_DATABASE: school
+        MYSQL_USER: schools
+        MYSQL_PASSWORD: 123456
+    ports:
+      - "3306:3306"

@@ -1,0 +1,84 @@
+{
+  "registerPayload1" : {
+       "teacher" : "teacher1@eaxmple.com",
+       "students" : ["student1@example.com","student2@example.com"]
+  },
+  "registerPaylaod2": {
+    "teacher": "teacher2@eaxmple.com",
+    "students": [
+        "student1@example.com",
+        "student3@example.com",
+        "student4@example.com"
+    ]
+  },
+  "registerPaylaod3": {
+    "teacher": "teacher2",
+    "students": [
+        "stud"
+    ]
+},
+  "commonStudentsPayload1":{
+   "teacher" : [
+        "teacher1@eaxmple.com"
+    ]
+   },
+   "commonStudentsResponse1": {
+    "students": [
+       "student1@example.com",
+       "student2@example.com"
+    ]
+ },
+"commonStudentsPayload2": {
+    "teacher": [
+        "teacher1@eaxmple.com",
+        "teacher2@eaxmple.com"
+    ]
+},
+ "commonStudentsResponse2": {
+    "students": [
+        "teacher1@eaxmple.com"
+        
+    ]
+  },
+  "commonStudentsPayload3": {
+    "teacher": [
+        "teacher1@eaxmple.com",
+        "teacher2"
+    ]
+},
+  "suspendPayload1": {
+    "student": "student2@example.com"
+    
+},
+"suspendPayload2": {
+    "student": "student8@example.com"
+    
+},
+  "sendNotificationPayload1": {
+    "teacher": "teacher2@eaxmple.com",
+    "notification" : "Hey student  @student5@example.com  student6@example.com" 
+},
+"sendNotificationResponse1": {
+    "recipients" :
+    [
+        "student1@example.com",
+        "student3@example.com",
+        "student4@example.com",
+        "student5@example.com"
+    ]
+ }
+,
+"sendNotificationPayload2": {
+    "teacher": "teacher2@eaxmple.com",
+    "notification": "Hey everyone !!!"
+},
+"sendNotificationResponse2": {
+    "recipients": [
+        "student1@example.com",
+        "student3@example.com",
+        "student4@example.com",
+        "student5@example.com"
+    ]
+}
+
+}

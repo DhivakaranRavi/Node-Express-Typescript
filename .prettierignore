@@ -1,0 +1,6 @@
+build/
+coverage/
+api-docs/
+test/
+logs/
+node_modules/
