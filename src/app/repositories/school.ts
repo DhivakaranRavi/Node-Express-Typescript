@@ -72,8 +72,7 @@ export const bulkStudentInsertQuery = async (
 };
 
 // get common student query
-export const getCommonStudentsQuery = async (teacher: any) => {
-  const teachers = await getUserByEmailQuery(Teachers, teacher);
+export const getCommonStudentsQuery = async (teachers: any) => {
   let query = await getRepository(Students).createQueryBuilder('student');
   let condition =
     'student.suspended  = :suspended AND student.status = :status AND ';

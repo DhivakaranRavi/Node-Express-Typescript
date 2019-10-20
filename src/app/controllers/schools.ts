@@ -65,7 +65,6 @@ export class SchoolController {
     this.router.post(
       `${this.path}/register`,
       validationMiddleware(CreateStudentDTO),
-      redisMiddleware(),
       this.createStudent,
     );
 
@@ -87,7 +86,7 @@ export class SchoolController {
      *         schema:
      *           type: object
      *           additionalProperties:
-     *              type: string
+     *            type: string
      *         style: form
      *         explode: true
      *     responses:
@@ -134,7 +133,6 @@ export class SchoolController {
     this.router.post(
       `${this.path}/suspend`,
       validationMiddleware(StudentSuspendDTO),
-      redisMiddleware(),
       this.studentSuspend,
     );
 
@@ -190,7 +188,9 @@ export class SchoolController {
         ? (createTeacher = await insertQuery(Teachers, { email: teacher }))
         : null;
       await bulkStudentInsertQuery(
-        isTeacherExist.length ? isTeacherExist[0] : createTeacher.generatedMaps[0],
+        isTeacherExist.length
+          ? isTeacherExist[0]
+          : createTeacher.generatedMaps[0],
         students,
       );
       response.status(204).send();
@@ -207,21 +207,20 @@ export class SchoolController {
   ) => {
     try {
       const { teacher }: CommonStudentDTO = request.query;
-      let students = await getCommonStudentsQuery(
-        _.isArray(teacher) ? teacher : [teacher],
-      );
-      students.length
-        ? // request['redis'].set(
-          //   request['redis_key'],
-          //   JSON.stringify({ students }),
-          //   'EX',
-          //   process.env.REDIS_EXPIRY,
-          //   () => {
-          //     response.status(200).json({ students });
-          //   },
-          // )
-          response.status(200).json({ students })
-        : next(new Exception(404, 'No student found for the given teachers'));
+      const teachers = await getUserByEmailQuery(Teachers, teacher);
+      if (teachers.length) {
+        let students = await getCommonStudentsQuery(teachers);
+        students.length
+          ? response.status(200).json({ students })
+          : next(
+              new Exception(
+                404,
+                `No student found for the given teacher ${teacher}`,
+              ),
+            );
+      } else {
+        next(new Exception(404, `Teacher ${teacher} does not exist`));
+      }
     } catch (error) {
       this.logger.info(error);
       next(new Exception(500, 'Internal Server Error'));
@@ -270,19 +269,12 @@ export class SchoolController {
           ? (students = await bulkStudentInsertQuery(isTeacherExist[0], email))
           : null;
         let recipients = _.union([
-          ...(await getCommonStudentsQuery([teacher])),
+          ...(await getCommonStudentsQuery(isTeacherExist)),
           ...(email ? _.xor(_.compact(students), email) : []),
         ]);
-        // request['redis'].set(
-        //   request['redis_key'],
-        //   JSON.stringify({ recipients }),
-        //   'EX',
-        //   process.env.REDIS_EXPIRY,
-        //   () => {
-        //     response.status(200).json({ recipients });
-        //   },
-        // );
         response.status(200).json({ recipients });
+      } else {
+        next(new Exception(404, `Teacher ${teacher} does not exist`));
       }
     } catch (error) {
       this.logger.info(error);

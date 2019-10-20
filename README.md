@@ -15,12 +15,12 @@ Clone the repository
 
 Prerequisites 
 
-change .env  MYSQL_HOST= docker &  REDIS_HOST= redis
+change .env  MYSQL_HOST= database &  REDIS_HOST= redis
  
 Install **docker** and **docker compose** and then open folder directory excute the below
 
 ```
-docker-compose up
+docker-compose up or docker-compose up -d
 
 ```
 
@@ -30,11 +30,19 @@ Prerequisites
 
 change .env  MYSQL_HOST= localhost
 
+create a database school 
+
+```
+CREATE DATABASE school;
+```
+
 **Npm  -v6.9.0**
 
 **Node -v10.16.0**
 
 **Redis v4.0.9**
+
+**MySQL v8.0.16**
 
 
 
@@ -49,7 +57,7 @@ yarn install or npm install
 
 ```
 yarn global add nodemon or npm install -g nodemon 
-npm  run nodemon
+npm run nodemon
 ```
 
 ## Test
@@ -77,7 +85,7 @@ npm start
 
 Currently redis cache not working.
 
-if you want check works redis please uncomment and comment the following line in  src/app/controller/school.ts and restart the server
+if you want check works redis please add and comment the following line in  src/app/controller/school.ts and restart the server
 
 ```
             request['redis'].set(
@@ -89,7 +97,7 @@ if you want check works redis please uncomment and comment the following line in
               response.status(200).json({ students });
             },
             )
-            //response.status(200).json({ students });
+       line number 212  //response.status(200).json({ students });
             
           
           
@@ -102,7 +110,7 @@ if you want check works redis please uncomment and comment the following line in
             response.status(200).json({ recipients });
             },
             );
-           // response.status(200).json({ recipients })
+       line number 268  // response.status(200).json({ recipients })
             
 ```
 
