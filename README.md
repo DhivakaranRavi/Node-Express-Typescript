@@ -1,7 +1,5 @@
 
-# School Assignment
-
-This API provides endpoints for teachers to perform administrative functions for their students. Teachers and students are identified by their email addresses.
+# NODE Typescript
 
 ### Tech Stack
 
@@ -36,13 +34,13 @@ create a database school
 CREATE DATABASE school;
 ```
 
-**Npm  -v6.9.0**
+**Npm  - v6.9.0**
 
-**Node -v10.16.0**
+**Node - v10.16.0**
 
-**Redis v4.0.9**
+**Redis - v4.0.9**
 
-**MySQL v8.0.16**
+**MySQL - v8.0.16**
 
 
 
@@ -113,134 +111,6 @@ if you want check works redis please add and comment the following line in  src/
        line number 268  // response.status(200).json({ recipients })
             
 ```
-
-
-
-
-
-# Endpoints
-
-Register API - [http://34.219.206.113:8085/api/register](http://34.219.206.113:8085/api/register)
-
-Method - post
-
-Content-Type: application/json
-
-Sample payload
-```
-{
-  "teacher": "dhivakaran.ravi@gmail.com",
-  "students": [
-    "ram@gmail.com",
-    "john@gmail.com"
-  ]
-}
-```
-Response 
-
-```
-status code 204
-```
-
-Get Student List -
-
-[http://34.219.206.113:8085/api/commonstudents](http://34.219.206.113:8085/api/commonstudents)
-
-[http://34.219.206.113:8085/api/commonstudents?teacher=dhivkaran.ravi@gmail.com](http://34.219.206.113:8085/api/commonstudents?teacher=dhivkaran.ravi@gmail.com)
-
-Method - GET
-
-Content-Type: application/json
-
-
-Response 
-
-```
-{
-  "students": [
-    "ram@gmail.com",
-    "john@gmail.com"
-  ]
-}
-```
-
-Get Student List -
-
-[http://34.219.206.113:8085/api/commonstudents](http://34.219.206.113:8085/api/commonstudents)
-
-[http://34.219.206.113:8085/api/commonstudents?teacher=dhivkaran.ravi@gmail.com](http://34.219.206.113:8085/api/commonstudents?teacher=dhivkaran.ravi@gmail.com)
-
-Method - GET
-
-Content-Type: application/json
-
-
-Response 
-
-```
-{
-  "students": [
-    "ram@gmail.com",
-    "john@gmail.com"
-  ]
-}
-```
-
-
-Student Suspend API -
-
-[http://34.219.206.113:8085/api/suspend](http://34.219.206.113:8085/api/suspend)
-
-Method - Post 
-
-Content-Type: application/json
-
-
-Sample payload
-```
-{
-  "student": "john@gmail.com",
-}
-```
-
-Response 
-
-```
-status code 204
-```
-
-
-Retrieve For Notification  API -
-
-[http://34.219.206.113:8085/api/retrievefornotifications](http://34.219.206.113:8085/api/retrievefornotifications)
-
-Method - Post 
-
-Content-Type: application/json
-
-
-Sample payload
-```
-{
-  "teacher": "dhivakaran.ravi@gmail.com",
-  "notification": "Hello students! @kabil@gmail.com @siva@gmail.com;"
-}
-```
-
-Response 
-
-```
-{
-  "recipients" [
-    "kabil@gmail.com",
-    "siva@gmail.com",
-    "jeeva@gmail.com"
-  ]
-}
-```
-
-
-
 
 ## Author
 
