@@ -1,6 +1,3 @@
-
-# NODE Typescript
-
 ### Tech Stack
 
 [Node , Express , TypeORM , MySQL]
